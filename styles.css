@@ -1,0 +1,70 @@
+:root {
+    --bg-color: #3a4750;
+    --text-color: #eaeaea;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200&display=swap');
+
+body {
+
+    display: flex;
+    flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+    font-family: 'Nunito Sans', sans-serif;
+    color: var(--text-color);
+    
+    background-color: var(--bg-color);
+}
+
+.file-upload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding-top: 3rem;
+}
+
+#drop_zone {
+    border: 2px dashed #bbb;
+    border-radius: 5px;
+    padding: 2rem 4rem;
+    text-align: center;
+    color: #bbb;
+}
+
+.string-input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding-top: 2rem;
+}
+
+.process-file {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding-top: 3rem;
+}
+
+.download-file {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding-top: 1.25rem;
+}
+
+.disabled-button {
+    cursor: not-allowed;
+    pointer-events: none;
+    color: #c0c0c0;
+}
+
+.enabled-button {
+    cursor: default;
+    pointer-events: all;
+}

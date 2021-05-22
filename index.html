@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css" />
+    <title>Line Cleaner</title>
+</head>
+<body>
+
+    <div class="file-upload">
+        <button id="choose_file_button" onclick = "document.getElementById('choose_file_input').click()">Choose File</button>
+        <input type="file" id="choose_file_input" style="display:none">
+        <p>Or</p>
+        <div id="drop_zone">Drop file here</div>
+    </div>
+    
+    <div class="string-input">
+        <p>Clear lines containing:</p>
+        <input type="text" id="clear_input">
+    </div>
+
+    <div class="process-file">
+        <button type="button" class="disabled-button" id="process_file">Process File</button>
+    </div>
+
+    <div class="download-file">
+        <p id="processed_file_name"></p>
+        <button type="button" class="disabled-button" id="download_file">Download</button>
+    </div>
+
+    <script src="script.js"></script>
+    
+</body>
+</html>

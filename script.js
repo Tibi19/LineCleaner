@@ -1,5 +1,3 @@
-// Just use the workaround from https://ourcodeworld.com/articles/read/189/how-to-create-a-file-and-generate-a-download-with-javascript-in-the-browser-without-a-server
-
 const dropZone = document.getElementById('drop_zone')
 dropZone.addEventListener('dragover', handleDragOver, false)
 dropZone.addEventListener('drop', handleFileDrop, false)

@@ -9,35 +9,33 @@
 </head>
 <body>
 
-    <div class="file-upload">
-        <button id="choose_file_button" onclick = "document.getElementById('choose_file_input').click()">Choose File</button>
-        <input type="file" id="choose_file_input" style="display:none">
-        <p>Or</p>
-        <div id="drop_zone">Drop file here</div>
+    <div class="navbar">
+        <img class="logo" src="" alt="">
+        <h2 class="title"></h2>
     </div>
-    
-    <div class="string-input">
-        <p>Clear lines containing:</p>
-        <input type="text" id="clear_input">
-    </div>
-
-    <div class="process-file">
-        <button type="button" class="disabled-button" id="process_file">Process File</button>
-    </div>
-
-    <div class="download-file">
-        <p id="processed_file_name"></p>
-        <button type="button" class="disabled-button" id="download_file">Download</button>
-    </div>
-
-    <div class="navbar"></div>
 
     <main>
-        <section class="upload"></section>
+        <section class="upload">
+            <img src="" alt="" id="upload_hint">
+            <button id="choose_file_button" onclick = "document.getElementById('choose_file_input').click()">Choose File</button>
+            <input type="file" id="choose_file_input" style="display:none">
+            <div id="drop_zone">Drop file here</div>
+        </section>
 
-        <secton class="process"></secton>
+        <section class="process">
+            <img src="" alt="" id="process_hint">
+            <p>Clear lines containing:</p>
+            <div class="process-input">
+                <input type="image" id="process_button" src="" alt="">
+                <input type="text" id="clear_input">
+            </div>
+        </section>
 
-        <section class="download"></section>
+        <section class="download">
+            <img src="" alt="" id="download_hint">
+            <img src="" alt="" id="file_icon">
+            <button id="download_button">Download</button>
+        </section>
     </main>
 
     <script src="script.js"></script>

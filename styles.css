@@ -1,9 +1,31 @@
 :root {
-    --bg-color: #3a4750;
-    --text-color: #eaeaea;
+    --ambient-color: #323232;
+    --ambient-color-dark: #000000;
+        /* Opacity
+        navbar, section: 40%
+        button: 100%
+        button-inactive: 50%
+        */
+    --text-color: #DFE0DD; /* inactive opacity: 50% */
+    --done-color: #10E04B;
+    --ready-color: #E0D71C;
+    --inactive-color: #E01010; /* 50% opacity */
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200&display=swap');
+
+/*TODO
+    background
+    navbar
+    position elements with flexbox, apply classes where needed
+    url classes for hint images linking to done, ready, inactive svgs
+    done, ready, inactive classes
+    think what else would be needed for functionality and switch to js
+*/
+
+
+
+/*********** OLD CSS ***********
 
 body {
 
@@ -68,3 +90,5 @@ body {
     cursor: default;
     pointer-events: all;
 }
+
+*/

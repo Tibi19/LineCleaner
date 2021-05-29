@@ -4,36 +4,38 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/line_cleaner_favicon.png">
     <link rel="stylesheet" href="styles.css" />
     <title>Line Cleaner</title>
 </head>
 <body>
 
     <div class="navbar">
-        <img class="logo" src="" alt="">
+        <img class="logo" src="svg/line_cleaner_logo.svg" alt="Line cleaner logo">
         <h2 class="title"></h2>
     </div>
 
     <main>
         <section class="upload">
-            <img src="" alt="" id="upload_hint">
+            <img src="svg/done_hint.svg" alt="" id="upload_hint">
             <button id="choose_file_button" onclick = "document.getElementById('choose_file_input').click()">Choose File</button>
             <input type="file" id="choose_file_input" style="display:none">
             <div id="drop_zone">Drop file here</div>
         </section>
 
         <section class="process">
-            <img src="" alt="" id="process_hint">
+            <img src="svg/ready_hint.svg" alt="" id="process_hint">
             <p>Clear lines containing:</p>
             <div class="process-input">
-                <input type="image" id="process_button" src="" alt="">
+                <input type="image" id="process_button" src="svg/erase_button.svg" alt="">
                 <input type="text" id="clear_input">
             </div>
         </section>
 
         <section class="download">
-            <img src="" alt="" id="download_hint">
-            <img src="" alt="" id="file_icon">
+            <img src="svg/inactive_hint.svg" alt="" id="download_hint">
+            <img src="svg/file_icon.svg" alt="" id="file_icon">
+            <p class="hidden" id="file_extension"></p>
             <button id="download_button">Download</button>
         </section>
     </main>

@@ -7,11 +7,12 @@
         button: 100%
         button-inactive: 50%
         */
-    --text-color: #DFE0DD; /* inactive opacity: 50% */
+    --text-color: #DFE0DD; 
+    --text-color-rgb: 223, 224, 221; /* inactive opacity: 50% */
     --done-color: #10E04B;
     --ready-color: #E0D71C;
-    --inactive-color: #E01010; /* 50% opacity */
-    --inactive-color-rgb: 224, 16, 16;
+    --inactive-color: #E01010; 
+    --inactive-color-rgb: 224, 16, 16; /* 50% opacity */
 }
 
 /*TODO
@@ -19,8 +20,10 @@
     X navbar
     X position elements with flexbox, apply classes where needed
     X url classes for hint images linking to done, ready, inactive svgs
-    position elements inside sections
-    decorate elements
+    position and decorate elements inside sections
+        X upload section
+        process section
+        download section
     done, ready, inactive classes
     think what else would be needed for functionality and switch to js
 */
@@ -45,16 +48,8 @@ body {
     height: 3rem;
     background-color: rgba(var(--ambient-color-dark-rgb), 0.4);
 }
-
-.title {
-    padding-left: 0.8rem;
-}
-
-.logo {
-    transform: scale(0.9);
-}
-
-
+.title { padding-left: 0.8rem; }
+.logo { transform: scale(0.9); }
 
 main {
     margin: 4.5rem;
@@ -97,22 +92,55 @@ main {
     margin: 0.5rem 0 0 0.5rem;
 }
 
+button {
+    padding: 0.2rem 1rem;
+    width: fit-content;
 
+    border-radius: 0.625rem;
+    border-width: 0.1rem;
+
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.75em;
+}
+.inactive-button {
+    border-color: rgba(var(--inactive-color-rgb), 0.5);
+    background-color: rgba(var(--ambient-color-dark-rgb), 0.5);
+    color: rgba(var(--text-color-rgb), 0.5);
+
+    cursor: not-allowed;
+    pointer-events: none;
+}
+.ready-button {
+    border-color: var(--ready-color);
+    background-color: var(--ambient-color-dark);
+    color: var(--text-color);
+}
+.done-button {
+    border-color: var(--done-color);
+    background-color: var(--ambient-color-dark);
+    color: var(--text-color);
+}
 
 #drop_zone {
     position: relative;
-    border: 0.125rem dashed #bbb;
+    border: 0.125rem dashed;
     border-radius: 0.25rem;
     padding: 2rem 4rem;
     text-align: center;
-    color: #bbb;
-
     width: fit-content;
+    margin-top: 2rem;
+}
+.drop-ready {
+    border-color: var(--ready-color);
+    color: var(--ready-color);
+}
+.drop-done {
+    border-color: var(--done-color);
+    color: var(--done-color);
 }
 
-button {
-    width: fit-content;
-}
+
 
 
 

@@ -22,9 +22,9 @@
         <section class="upload">
             <img class="done-hint" alt="" id="upload_hint">
             <div class="upload-container">
-                <button id="choose_file_button" onclick = "document.getElementById('choose_file_input').click()">Choose File</button>
+                <button class="done-button" id="choose_file_button" onclick = "document.getElementById('choose_file_input').click()">Choose file</button>
                 <input type="file" id="choose_file_input" style="display:none">
-                <div id="drop_zone">Drop file here</div>
+                <div class="drop-done" id="drop_zone">Drop file here</div>
             </div>
         </section>
 
@@ -57,7 +57,7 @@
                     <path d="M19.5042 4.16667C28.1625 4.16667 25 16.6667 25 16.6667C25 16.6667 37.5 13.2292 37.5 21.7854V45.8333H4.16667V4.16667H19.5042ZM21.2271 0H0V50H41.6667V20.0292C41.6667 15.0479 27.8167 0 21.2271 0Z" fill="#E01010" fill-opacity="0.5"/>
                 </svg>
                 <p class="hidden" id="file_extension"></p>
-                <button id="download_button">Download</button>
+                <button class="inactive-button" id="download_button">Download</button>
             </div>
         </section>
 

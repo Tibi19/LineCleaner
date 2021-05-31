@@ -7,10 +7,14 @@
         button: 100%
         button-inactive: 50%
         */
+
     --text-color: #DFE0DD; 
     --text-color-rgb: 223, 224, 221; /* inactive opacity: 50% */
+
     --done-color: #10E04B;
+    --done-color-accent: #77F29A;
     --ready-color: #E0D71C;
+    --ready-color-accent: #F2EC77;
     --inactive-color: #E01010; 
     --inactive-color-rgb: 224, 16, 16; /* 50% opacity */
 }
@@ -23,9 +27,13 @@
     position and decorate elements inside sections
         X upload section
         process section
+            make the input text border its own div with a border
+            make text input smaller in width 
+            -> erase button will be clickable this way
         download section
     done, ready, inactive classes
     think what else would be needed for functionality and switch to js
+        css section states for ready, done, inactive?
 */
 
 body {
@@ -101,7 +109,7 @@ button {
 
     font-family: 'Nunito Sans', sans-serif;
     font-weight: 600;
-    font-size: 0.75em;
+    font-size: 0.8em;
 }
 .inactive-button {
     border-color: rgba(var(--inactive-color-rgb), 0.5);
@@ -125,11 +133,15 @@ button {
 #drop_zone {
     position: relative;
     border: 0.125rem dashed;
-    border-radius: 0.25rem;
-    padding: 2rem 4rem;
+    border-radius: 0.8rem;
+    padding: 2rem 4.5rem;
     text-align: center;
     width: fit-content;
     margin-top: 2rem;
+
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.8em;
 }
 .drop-ready {
     border-color: var(--ready-color);
@@ -140,8 +152,61 @@ button {
     color: var(--done-color);
 }
 
+.process-text-readydone { color: var(--text-color); }
+.process-text-inactive { color: rgba(var(--text-color-rgb), 0.5); }
+#process_text {
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.8em;
+}
 
+.process-input {
+    margin-top: 0.5rem;
+}
 
+#clear_input {
+    position: relative;
+    left: 1.2rem;
+    width: 8.5rem;
+    padding-right: 1rem;
+    z-index: 1;
+
+    background-color: transparent;
+
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.8em; 
+}
+#clear_input:focus { outline: none; }
+
+.clear-input-done {
+    color: var(--text-color);
+    border: none;
+    border-bottom: 1px solid var(--done-color);
+}
+.clear-input-ready {
+    color: var(--text-color);
+    border: none;
+    border-bottom: 1px solid var(--ready-color);
+}
+.clear-input-inactive {
+    color:rgba(var(--text-color-rgb), 0.5);
+    border: none;
+    border-bottom: 1px solid rgba(var(--inactive-color-rgb), 0.5);
+
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.clear-button-done { fill: var(--done-color); }
+.clear-button-done:hover { fill: var(--done-color-accent); }
+.clear-button-ready { fill: var(--ready-color); }
+.clear-button-ready:hover { fill: var(--ready-color-accent); }
+.clear-button-inactive { 
+    fill: rgba(var(--inactive-color-rgb), 0.5); 
+    cursor: not-allowed;
+    pointer-events: none;
+}
 
 
 /*********** OLD CSS ***********

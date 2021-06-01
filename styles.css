@@ -26,15 +26,17 @@
     X url classes for hint images linking to done, ready, inactive svgs
     position and decorate elements inside sections
         X upload section
-        process section
+        X process section
             make the input text border its own div with a border
             make text input smaller in width 
             -> erase button will be clickable this way
-        download section
-    done, ready, inactive classes
+        X download section
+    X done, ready, inactive classes
     think what else would be needed for functionality and switch to js
         css section states for ready, done, inactive?
 */
+
+/********************** WRAPPERS **********************/
 
 body {
     font-family: 'Nunito Sans', sans-serif;
@@ -73,6 +75,8 @@ main {
     gap: 0.875rem;
 }
 
+/********************** CONTAINERS **********************/
+
 .upload { grid-area: upload; }
 .process { grid-area: process; }
 .download { grid-area: download; }
@@ -91,6 +95,8 @@ main {
     align-items: center;
 }
 
+/********************** HINTS **********************/
+
 .done-hint { content: url(/svg/done_hint.svg); }
 .ready-hint { content: url(/svg/ready_hint.svg); }
 .inactive-hint { content: url(/svg/inactive_hint.svg); }
@@ -100,10 +106,13 @@ main {
     margin: 0.5rem 0 0 0.5rem;
 }
 
+/********************** BUTTONS **********************/
+
 button {
     padding: 0.2rem 1rem;
     width: fit-content;
 
+    border: solid;
     border-radius: 0.625rem;
     border-width: 0.1rem;
 
@@ -130,6 +139,8 @@ button {
     color: var(--text-color);
 }
 
+/********************** UPLOAD **********************/
+
 #drop_zone {
     position: relative;
     border: 0.125rem dashed;
@@ -152,6 +163,8 @@ button {
     color: var(--done-color);
 }
 
+/********************** PROCESS **********************/
+
 .process-text-readydone { color: var(--text-color); }
 .process-text-inactive { color: rgba(var(--text-color-rgb), 0.5); }
 #process_text {
@@ -160,18 +173,19 @@ button {
     font-size: 0.8em;
 }
 
-.process-input {
+#process_input {
     margin-top: 0.5rem;
+    margin-left: 0.25rem;
 }
 
 #clear_input {
     position: relative;
-    left: 1.2rem;
-    width: 8.5rem;
-    padding-right: 1rem;
-    z-index: 1;
+    left: 0.8rem;
+    bottom: 0.1rem;
+    width: 8rem;
 
     background-color: transparent;
+    border: none;
 
     font-family: 'Nunito Sans', sans-serif;
     font-weight: 600;
@@ -179,100 +193,59 @@ button {
 }
 #clear_input:focus { outline: none; }
 
-.clear-input-done {
-    color: var(--text-color);
-    border: none;
-    border-bottom: 1px solid var(--done-color);
+#clear_button {
+    position: relative;
+    left: 1rem;
 }
-.clear-input-ready {
-    color: var(--text-color);
-    border: none;
-    border-bottom: 1px solid var(--ready-color);
-}
-.clear-input-inactive {
-    color:rgba(var(--text-color-rgb), 0.5);
-    border: none;
-    border-bottom: 1px solid rgba(var(--inactive-color-rgb), 0.5);
 
+.clear-underline {
+    border-bottom: 1px solid var(--ready-color);
+    width: 10rem;
+    position: relative;
+    left: 0.7rem;
+}
+
+.process-input-done #clear_input { color:rgba(var(--text-color-rgb), 0.8); }
+.process-input-done #clear_button { fill: var(--done-color); }
+.process-input-done #clear_button:hover { fill: var(--done-color-accent); }
+.process-input-done .clear-underline { border-bottom: 1px solid var(--done-color); }
+
+.process-input-ready #clear_input { color:rgba(var(--text-color-rgb), 0.8); }
+.process-input-ready #clear_button { fill: var(--ready-color); }
+.process-input-ready #clear_button:hover { fill: var(--ready-color-accent); }
+.process-input-ready .clear-underline { border-bottom: 1px solid var(--ready-color) }
+
+.process-input-inactive #clear_input { 
+    color:rgba(var(--text-color-rgb), 0.5);
     cursor: not-allowed;
     pointer-events: none;
 }
-
-.clear-button-done { fill: var(--done-color); }
-.clear-button-done:hover { fill: var(--done-color-accent); }
-.clear-button-ready { fill: var(--ready-color); }
-.clear-button-ready:hover { fill: var(--ready-color-accent); }
-.clear-button-inactive { 
+.process-input-inactive #clear_button { 
     fill: rgba(var(--inactive-color-rgb), 0.5); 
     cursor: not-allowed;
     pointer-events: none;
 }
+.process-input-inactive .clear-underline { border-bottom: 1px solid rgba(var(--inactive-color-rgb), 0.5); }
 
+/********************** DOWNLOAD **********************/
 
-/*********** OLD CSS ***********
-
-body {
-
-    display: flex;
-    flex-direction: column;
-	justify-content: center;
-	align-items: center;
+#file_extension {
+    position: relative;
+    bottom: 2.3rem;
 
     font-family: 'Nunito Sans', sans-serif;
-    color: var(--text-color);
-    
-    background-color: var(--bg-color);
+    font-weight: 600;
+    font-size: 0.75em; 
+}
+.file-extension-done { color: var(--done-color); }
+.file-extension-ready { color: var(--ready-color); }
+.file-extension-inactive { color: transparent; }
+
+#download_button {
+    position: relative;
+    bottom: 1.3rem;
 }
 
-.file-upload {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    padding-top: 3rem;
-}
-
-#drop_zone {
-    border: 2px dashed #bbb;
-    border-radius: 5px;
-    padding: 2rem 4rem;
-    text-align: center;
-    color: #bbb;
-}
-
-.string-input {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    padding-top: 2rem;
-}
-
-.process-file {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    padding-top: 3rem;
-}
-
-.download-file {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    padding-top: 1.25rem;
-}
-
-.disabled-button {
-    cursor: not-allowed;
-    pointer-events: none;
-    color: #c0c0c0;
-}
-
-.enabled-button {
-    cursor: default;
-    pointer-events: all;
-}
-
-*/
+.file-icon-done { fill: var(--done-color); }
+.file-icon-ready { fill: var(--ready-color); }
+.file-icon-inactive { fill: rgba(var(--inactive-color-rgb), 0.5); }

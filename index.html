@@ -33,9 +33,9 @@
             
             <div class="process-container">
                 <p class="process-text-readydone" id="process_text">Clear lines containing:</p>
-                <div class="process-input">
-                    <input class="clear-input-ready" type="text" spellcheck="false" id="clear_input">
-                    <svg class="clear-button-ready" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" id="clear_button">
+                <div class="process-input-ready" id="process_input">
+                    <input type="text" spellcheck="false" id="clear_input">
+                    <svg id="clear_button" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0)">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M3.30283 13.4167L0.170917 10.2871C0.0571667 10.1733 0 10.0246 0 9.87467C0 9.72534 0.0571667 9.576 0.170917 9.46225L8.8795 0.754253C8.99325 0.641086 9.14258 0.583336 9.29192 0.583336C9.44067 0.583336 9.59058 0.641086 9.70433 0.754253L13.8291 4.88017C13.9434 4.99392 14 5.14325 14 5.29317C14 5.4425 13.9434 5.59125 13.8291 5.70559L7.28642 12.25H10.5029V13.4167H3.30283ZM5.43608 12.25L2.23592 9.04984L1.40817 9.87467L3.78583 12.25H5.43608ZM9.289 1.99442L3.06075 8.22442L6.36125 11.5255L12.5889 5.29434L9.289 1.99442Z"/>
                         <rect fill="transparent" width="14" height="14" onclick="alert('click!')" />
@@ -46,6 +46,7 @@
                         </clipPath>
                         </defs>
                     </svg>
+                    <div class="clear-underline"></div>
                 </div>
             </div>
         </section>
@@ -54,10 +55,10 @@
             <img class="inactive-hint" alt="" id="download_hint">
 
             <div class="download-container">
-                <svg width="42" height="50" viewBox="0 0 42 50" fill="none" xmlns="http://www.w3.org/2000/svg" id="file_icon">
-                    <path d="M19.5042 4.16667C28.1625 4.16667 25 16.6667 25 16.6667C25 16.6667 37.5 13.2292 37.5 21.7854V45.8333H4.16667V4.16667H19.5042ZM21.2271 0H0V50H41.6667V20.0292C41.6667 15.0479 27.8167 0 21.2271 0Z" fill="#E01010" fill-opacity="0.5"/>
+                <svg class="file-icon-inactive" id="file_icon" width="42" height="50" viewBox="0 0 42 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19.5042 4.16667C28.1625 4.16667 25 16.6667 25 16.6667C25 16.6667 37.5 13.2292 37.5 21.7854V45.8333H4.16667V4.16667H19.5042ZM21.2271 0H0V50H41.6667V20.0292C41.6667 15.0479 27.8167 0 21.2271 0Z"/>
                 </svg>
-                <p class="hidden" id="file_extension"></p>
+                <p class="file-extension-inactive" id="file_extension">.txt</p>
                 <button class="inactive-button" id="download_button">Download</button>
             </div>
         </section>

@@ -1,10 +1,20 @@
+/**
+ * TODO
+ * X Set html/css classes to default state
+ * X Test setting process container ready (+ hint)
+ * X Set upload container done (+ hint)
+ * resolve bug: file icon not changing through js, but changes through normal html/css
+ *      try doing the same thing as in process -> change the class of a wrapper
+ * resolve bug: when download shows up, so do scroll bars
+ * resolve bug: file extension display doesn't update
+ */
+
 const dropZone = document.getElementById('drop_zone')
 dropZone.addEventListener('dragover', handleDragOver, false)
 dropZone.addEventListener('drop', handleFileDrop, false)
 dropZone.addEventListener('dragleave', handleDragLeave, false)
-const originalDropStyle = dropZone.style
-const originalDropText = dropZone.innerText
-const hoverDropStyle = 'color: #ddd; border-color: #dfdfdf'
+
+//const originalDropText = dropZone.innerText
 
 // File input and file input button are linked.
 // File input is for functionality, file input button is for display.
@@ -20,10 +30,18 @@ function handleDragOver(event) {
     event.preventDefault()
     event.dataTransfer.dropEffect = 'copy'
 
-    dropZone.style = hoverDropStyle
+    hoverDropZone()
 }
 
-function handleDragLeave() { dropZone.style = originalDropStyle }
+function hoverDropZone() {
+    dropZone.className === 'drop-ready' && (dropZone.className = 'drop-ready-hover')
+    dropZone.className === 'drop-done' && (dropZone.className = 'drop-done-hover')
+}
+
+function handleDragLeave() { 
+    dropZone.className === 'drop-ready-hover' && (dropZone.className = 'drop-ready')
+    dropZone.className === 'drop-done-hover' && (dropZone.className = 'drop-done')
+ }
 
 function handleFileDrop(event) {
     event.stopPropagation()
@@ -31,32 +49,51 @@ function handleFileDrop(event) {
     inputFile = event.dataTransfer.files[0]
     if(!inputFile) return
 
-    dropZone.innerText = inputFile.name
-    dropZone.style = originalDropStyle
-    resetFileInputsExcept(dropZone)
-    enableProcessButton()
+    updateFileName(inputFile.name)
+    //resetFileInputsExcept(dropZone)
+    setUploadDone()
+    setProcessReady()
 }
 
 function handleFileSelect(event) {
     inputFile = event.target.files[0]
     if(!inputFile) return
 
-    fileInputButton.innerText = inputFile.name
-    resetFileInputsExcept(fileInputButton)
-    enableProcessButton()
+    updateFileName(inputFile.name)
+    //resetFileInputsExcept(fileInputButton)
+    setUploadDone()
+    setProcessReady()
 }
 
-function resetFileInputsExcept(inputException) {
-    if(inputException != fileInputButton) fileInputButton.innerText = originalFileInputText
-    if(inputException != dropZone) dropZone.innerText = originalDropText
+const updateFileName = (inputFileName) => fileInputButton.innerText = inputFileName
+const uploadHint = document.getElementById('upload_hint')
+
+function setUploadDone () {
+    uploadHint.className = 'done-hint'
+    fileInputButton.className = 'done-button'
+    dropZone.className = 'drop-done'
 }
 
-const processButton = document.getElementById('process_file')
-const enableProcessButton = () => processButton.className = 'enabled-button'
+// function resetFileInputsExcept(inputException) {
+//     if(inputException != fileInputButton) fileInputButton.innerText = originalFileInputText
+//     if(inputException != dropZone) dropZone.innerText = originalDropText
+// }
+
+const processText = document.getElementById('process_text')
+const processHint = document.getElementById('process_hint')
+const processInput = document.getElementById('process_input')
+const clearButton = document.getElementById('clear_button')
 const clearInput = document.getElementById('clear_input')
+
+function setProcessReady () {
+    processText.className = 'process-text-readydone'
+    processHint.className = 'ready-hint'
+    processInput.className = 'process-input-ready'
+}
+
 let outputFile
 
-processButton.onclick = async () => {
+clearButton.onclick = async () => {
     const clearText = clearInput.value
     const inputFileText = await inputFile.text()
     const fileTextLines = inputFileText.split('\n')
@@ -69,14 +106,13 @@ processButton.onclick = async () => {
     outputFile = getOutputFile(inputFile.name, inputFile.type, outputText)
 
     if(outputFile) {
-        updateProcessedFileName()
-        enableDownloadButton()
+        setProcessDone()
+        setDownloadReady()
     }
 }
 
 function getOutputFile(inputFileName, inputFileType, outputText) {
-    const inputFileNameSplit = inputFileName.split('.')
-    const inputFileExtension = '.' + inputFileNameSplit[inputFileNameSplit.length - 1]
+    const inputFileExtension = getFileExtension(inputFileName)
     const inputFileNameNoExtension = inputFileName.slice( 0, inputFileName.indexOf(inputFileExtension) ) 
     const processedFileName = inputFileNameNoExtension + '_cleared' + inputFileExtension
     
@@ -87,9 +123,28 @@ function getOutputFile(inputFileName, inputFileType, outputText) {
     )
 }
 
-const downloadButton = document.getElementById('download_file')
-const enableDownloadButton = () => downloadButton.className = 'enabled-button'
-const updateProcessedFileName = () => document.getElementById('processed_file_name').innerText = outputFile.name
+function getFileExtension(fileName) {
+    const fileNameSplit = fileName.split('.')
+    return '.' + fileNameSplit[fileNameSplit.length - 1]
+}
+
+function setProcessDone() {
+    processHint.className = 'done-hint'
+    processInput.className = 'process-input-done'
+}
+
+const downloadHint = document.getElementById('download_hint')
+const downloadButton = document.getElementById('download_button')
+const fileIcon = document.getElementById('file_icon')
+const extensionDisplay = document.getElementById('file_extension')
+
+function setDownloadReady() {
+    downloadHint.className = 'ready-hint'
+    downloadButton.className = 'ready-button'
+    fileIcon.className = 'file-icon-ready'
+    extensionDisplay.className = 'file-extension-ready'
+    extensionDisplay.innerText = getFileExtension(outputFile.fileName)
+}
 
 downloadButton.onclick = async () => {
     const outputText = await outputFile.text()
@@ -102,4 +157,20 @@ downloadButton.onclick = async () => {
 
     downloadElement.click()
     document.body.removeChild(downloadElement)
+
+    setDownloadDone()
+}
+
+function setDownloadDone() {
+    downloadHint.className = 'done-hint'
+    downloadButton.className = 'done-button'
+    fileIcon.className = 'file-icon-done'
+    extensionDisplay.className = 'file-extension-done'
+}
+
+function setDownloadInactive() {
+    downloadHint.className = 'inactive-hint'
+    downloadButton.className = 'inactive-button'
+    fileIcon.className = 'file-icon-inactive'
+    extensionDisplay.className = 'file-extension-inactive'
 }

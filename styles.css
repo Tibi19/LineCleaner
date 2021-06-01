@@ -87,7 +87,7 @@ main {
     display: flex;
     flex-direction: column;
 
-    box-shadow: 4px 3px 2px 2px rgba(0, 0, 0, 0.175);
+    box-shadow: 3px 3px 2px 2px rgba(0, 0, 0, 0.2);
 }
 
 .upload-container, .process-container, .download-container {

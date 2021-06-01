@@ -12,29 +12,10 @@
     --text-color-rgb: 223, 224, 221; /* inactive opacity: 50% */
 
     --done-color: #10E04B;
-    --done-color-accent: #77F29A;
     --ready-color: #E0D71C;
-    --ready-color-accent: #F2EC77;
     --inactive-color: #E01010; 
     --inactive-color-rgb: 224, 16, 16; /* 50% opacity */
 }
-
-/*TODO
-    X background
-    X navbar
-    X position elements with flexbox, apply classes where needed
-    X url classes for hint images linking to done, ready, inactive svgs
-    position and decorate elements inside sections
-        X upload section
-        X process section
-            make the input text border its own div with a border
-            make text input smaller in width 
-            -> erase button will be clickable this way
-        X download section
-    X done, ready, inactive classes
-    think what else would be needed for functionality and switch to js
-        css section states for ready, done, inactive?
-*/
 
 /********************** WRAPPERS **********************/
 
@@ -122,6 +103,10 @@ button {
     font-weight: 600;
     font-size: 0.8em;
 }
+button:hover {
+    color: #FFF;
+    padding: 0.2rem 1.1rem;
+}
 .inactive-button {
     border-color: rgba(var(--inactive-color-rgb), 0.5);
     background-color: rgba(var(--ambient-color-dark-rgb), 0.5);
@@ -147,7 +132,7 @@ button {
     position: relative;
     border: 0.125rem dashed;
     border-radius: 0.8rem;
-    padding: 2rem 4.5rem;
+    
     text-align: center;
     width: fit-content;
     margin-top: 2rem;
@@ -159,10 +144,22 @@ button {
 .drop-ready {
     border-color: var(--ready-color);
     color: var(--ready-color);
+    padding: 2rem 4.5rem;
 }
 .drop-done {
     border-color: var(--done-color);
     color: var(--done-color);
+    padding: 2rem 4.5rem;
+}
+.drop-ready-hover {
+    border-color: var(--ready-color);
+    color: var(--ready-color);
+    padding: 2rem 4.7rem 2.2rem 4.7rem;
+}
+.drop-done-hover {
+    border-color: var(--done-color);
+    color: var(--done-color);
+    padding: 2rem 4.7rem 2.2rem 4.7rem;
 }
 
 /********************** PROCESS **********************/
@@ -209,12 +206,12 @@ button {
 
 .process-input-done #clear_input { color:rgba(var(--text-color-rgb), 0.8); }
 .process-input-done #clear_button { fill: var(--done-color); }
-.process-input-done #clear_button:hover { fill: var(--done-color-accent); }
+.process-input-done #clear_button:hover { width: 15px; height: 15px; }
 .process-input-done .clear-underline { border-bottom: 1px solid var(--done-color); }
 
 .process-input-ready #clear_input { color:rgba(var(--text-color-rgb), 0.8); }
 .process-input-ready #clear_button { fill: var(--ready-color); }
-.process-input-ready #clear_button:hover { fill: var(--ready-color-accent); }
+.process-input-ready #clear_button:hover { width: 15px; height: 15px; }
 .process-input-ready .clear-underline { border-bottom: 1px solid var(--ready-color) }
 
 .process-input-inactive #clear_input { 

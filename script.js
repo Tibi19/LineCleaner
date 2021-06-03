@@ -3,8 +3,6 @@ dropZone.addEventListener('dragover', handleDragOver, false)
 dropZone.addEventListener('drop', handleFileDrop, false)
 dropZone.addEventListener('dragleave', handleDragLeave, false)
 
-//const originalDropText = dropZone.innerText
-
 // File input and file input button are linked.
 // File input is for functionality, file input button is for display.
 const fileInput = document.getElementById('choose_file_input')
@@ -39,7 +37,6 @@ function handleFileDrop(event) {
     if(!inputFile) return
 
     updateFileName(inputFile.name)
-    //resetFileInputsExcept(dropZone)
     setUploadDone()
     setProcessReady()
     setDownloadInactive()
@@ -50,7 +47,6 @@ function handleFileSelect(event) {
     if(!inputFile) return
 
     updateFileName(inputFile.name)
-    //resetFileInputsExcept(fileInputButton)
     setUploadDone()
     setProcessReady()
     setDownloadInactive()
@@ -64,11 +60,6 @@ function setUploadDone () {
     fileInputButton.className = 'done-button'
     dropZone.className = 'drop-done'
 }
-
-// function resetFileInputsExcept(inputException) {
-//     if(inputException != fileInputButton) fileInputButton.innerText = originalFileInputText
-//     if(inputException != dropZone) dropZone.innerText = originalDropText
-// }
 
 const processText = document.getElementById('process_text')
 const processHint = document.getElementById('process_hint')

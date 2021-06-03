@@ -35,7 +35,7 @@ body {
     align-items: center;
     justify-content: center;
 
-    width: 100vw;
+    width: 100%;
     height: 3rem;
     background-color: rgba(var(--ambient-color-dark-rgb), 0.4);
 }
@@ -228,6 +228,12 @@ button:hover {
 
 /********************** DOWNLOAD **********************/
 
+#file_info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 #file_extension {
     position: relative;
     bottom: 2.3rem;
@@ -236,15 +242,17 @@ button:hover {
     font-weight: 600;
     font-size: 0.75em; 
 }
-.file-extension-done { color: var(--done-color); }
-.file-extension-ready { color: var(--ready-color); }
-.file-extension-inactive { color: transparent; }
 
 #download_button {
     position: relative;
     bottom: 1.3rem;
 }
 
-.file-icon-done { fill: var(--done-color); }
-.file-icon-ready { fill: var(--ready-color); }
-.file-icon-inactive { fill: rgba(var(--inactive-color-rgb), 0.5); }
+.file-info-done #file_icon { fill: var(--done-color); }
+.file-info-done #file_extension { color: var(--done-color); }
+
+.file-info-ready #file_icon { fill: var(--ready-color); }
+.file-info-ready #file_extension { color: var(--ready-color); }
+
+.file-info-inactive #file_icon { fill: rgba(var(--inactive-color-rgb), 0.5); }
+.file-info-inactive #file_extension { color: transparent; }

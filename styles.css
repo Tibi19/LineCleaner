@@ -80,9 +80,9 @@ main {
 
 /********************** HINTS **********************/
 
-.done-hint { content: url(/svg/done_hint.svg); }
-.ready-hint { content: url(/svg/ready_hint.svg); }
-.inactive-hint { content: url(/svg/inactive_hint.svg); }
+.done-hint { content: url(done_hint.svg); }
+.ready-hint { content: url(ready_hint.svg); }
+.inactive-hint { content: url(inactive_hint.svg); }
 .done-hint, .ready-hint, .inactive-hint {
     width: 1.5625rem;
     height: 1.5625rem;

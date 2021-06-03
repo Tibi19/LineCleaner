@@ -1,70 +1,258 @@
 :root {
-    --bg-color: #3a4750;
-    --text-color: #eaeaea;
+    --ambient-color: #323232;
+    --ambient-color-dark: #000000;
+    --ambient-color-dark-rgb: 0, 0, 0;
+        /* Opacity
+        navbar, section: 40%
+        button: 100%
+        button-inactive: 50%
+        */
+
+    --text-color: #DFE0DD; 
+    --text-color-rgb: 223, 224, 221; /* inactive opacity: 50% */
+
+    --done-color: #10E04B;
+    --ready-color: #E0D71C;
+    --inactive-color: #E01010; 
+    --inactive-color-rgb: 224, 16, 16; /* 50% opacity */
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200&display=swap');
+/********************** WRAPPERS **********************/
 
 body {
-
-    display: flex;
-    flex-direction: column;
-	justify-content: center;
-	align-items: center;
-
     font-family: 'Nunito Sans', sans-serif;
     color: var(--text-color);
-    
-    background-color: var(--bg-color);
-}
+    margin: 0;    
+    background-color: var(--ambient-color);
 
-.file-upload {
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    padding-top: 3rem;
 }
 
-#drop_zone {
-    border: 2px dashed #bbb;
-    border-radius: 5px;
-    padding: 2rem 4rem;
-    text-align: center;
-    color: #bbb;
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 3rem;
+    background-color: rgba(var(--ambient-color-dark-rgb), 0.4);
+}
+.title { padding-left: 0.8rem; }
+.logo { transform: scale(0.9); }
+
+main {
+    margin: 4.5rem;
+
+    display: grid;
+    grid-template-areas:
+        "upload    upload"
+        "process   download";
+
+    grid-template-columns: 15.49rem 9.49rem;
+    grid-template-rows: 14.24rem 9.24rem;
+
+    gap: 0.875rem;
 }
 
-.string-input {
+/********************** CONTAINERS **********************/
+
+.upload { grid-area: upload; }
+.process { grid-area: process; }
+.download { grid-area: download; }
+.upload, .process, .download {
+    background-color: rgba(var(--ambient-color-dark-rgb), 0.4);
+    border-radius: 0.625rem;
+
+    display: flex;
+    flex-direction: column;
+
+    box-shadow: 3px 3px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.upload-container, .process-container, .download-container {
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    padding-top: 2rem;
 }
 
-.process-file {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+/********************** HINTS **********************/
 
-    padding-top: 3rem;
+.done-hint { content: url(/svg/done_hint.svg); }
+.ready-hint { content: url(/svg/ready_hint.svg); }
+.inactive-hint { content: url(/svg/inactive_hint.svg); }
+.done-hint, .ready-hint, .inactive-hint {
+    width: 1.5625rem;
+    height: 1.5625rem;
+    margin: 0.5rem 0 0 0.5rem;
 }
 
-.download-file {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+/********************** BUTTONS **********************/
 
-    padding-top: 1.25rem;
+button {
+    padding: 0.2rem 1rem;
+    width: fit-content;
+
+    border: solid;
+    border-radius: 0.625rem;
+    border-width: 0.1rem;
+
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.8em;
 }
+button:hover {
+    color: #FFF;
+    padding: 0.2rem 1.1rem;
+}
+.inactive-button {
+    border-color: rgba(var(--inactive-color-rgb), 0.5);
+    background-color: rgba(var(--ambient-color-dark-rgb), 0.5);
+    color: rgba(var(--text-color-rgb), 0.5);
 
-.disabled-button {
     cursor: not-allowed;
     pointer-events: none;
-    color: #c0c0c0;
+}
+.ready-button {
+    border-color: var(--ready-color);
+    background-color: var(--ambient-color-dark);
+    color: var(--text-color);
+}
+.done-button {
+    border-color: var(--done-color);
+    background-color: var(--ambient-color-dark);
+    color: var(--text-color);
 }
 
-.enabled-button {
-    cursor: default;
-    pointer-events: all;
+/********************** UPLOAD **********************/
+
+#drop_zone {
+    position: relative;
+    border: 0.125rem dashed;
+    border-radius: 0.8rem;
+    
+    text-align: center;
+    width: fit-content;
+    margin-top: 2rem;
+
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.8em;
 }
+.drop-ready {
+    border-color: var(--ready-color);
+    color: var(--ready-color);
+    padding: 2rem 4.5rem;
+}
+.drop-done {
+    border-color: var(--done-color);
+    color: var(--done-color);
+    padding: 2rem 4.5rem;
+}
+.drop-ready-hover {
+    border-color: var(--ready-color);
+    color: var(--ready-color);
+    padding: 2rem 4.7rem 2.2rem 4.7rem;
+}
+.drop-done-hover {
+    border-color: var(--done-color);
+    color: var(--done-color);
+    padding: 2rem 4.7rem 2.2rem 4.7rem;
+}
+
+/********************** PROCESS **********************/
+
+.process-text-readydone { color: var(--text-color); }
+.process-text-inactive { color: rgba(var(--text-color-rgb), 0.5); }
+#process_text {
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.8em;
+}
+
+#process_input {
+    margin-top: 0.5rem;
+    margin-left: 0.25rem;
+}
+
+#clear_input {
+    position: relative;
+    left: 0.8rem;
+    bottom: 0.1rem;
+    width: 8rem;
+
+    background-color: transparent;
+    border: none;
+
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.8em; 
+}
+#clear_input:focus { outline: none; }
+
+#clear_button {
+    position: relative;
+    left: 1rem;
+}
+
+.clear-underline {
+    border-bottom: 1px solid var(--ready-color);
+    width: 10rem;
+    position: relative;
+    left: 0.7rem;
+}
+
+.process-input-done #clear_input { color:rgba(var(--text-color-rgb), 0.8); }
+.process-input-done #clear_button { fill: var(--done-color); }
+.process-input-done #clear_button:hover { width: 15px; height: 15px; }
+.process-input-done .clear-underline { border-bottom: 1px solid var(--done-color); }
+
+.process-input-ready #clear_input { color:rgba(var(--text-color-rgb), 0.8); }
+.process-input-ready #clear_button { fill: var(--ready-color); }
+.process-input-ready #clear_button:hover { width: 15px; height: 15px; }
+.process-input-ready .clear-underline { border-bottom: 1px solid var(--ready-color) }
+
+.process-input-inactive #clear_input { 
+    color:rgba(var(--text-color-rgb), 0.5);
+    cursor: not-allowed;
+    pointer-events: none;
+}
+.process-input-inactive #clear_button { 
+    fill: rgba(var(--inactive-color-rgb), 0.5); 
+    cursor: not-allowed;
+    pointer-events: none;
+}
+.process-input-inactive .clear-underline { border-bottom: 1px solid rgba(var(--inactive-color-rgb), 0.5); }
+
+/********************** DOWNLOAD **********************/
+
+#file_info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#file_extension {
+    position: relative;
+    bottom: 2.3rem;
+
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.75em; 
+}
+
+#download_button {
+    position: relative;
+    bottom: 1.3rem;
+}
+
+.file-info-done #file_icon { fill: var(--done-color); }
+.file-info-done #file_extension { color: var(--done-color); }
+
+.file-info-ready #file_icon { fill: var(--ready-color); }
+.file-info-ready #file_extension { color: var(--ready-color); }
+
+.file-info-inactive #file_icon { fill: rgba(var(--inactive-color-rgb), 0.5); }
+.file-info-inactive #file_extension { color: transparent; }

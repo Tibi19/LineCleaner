@@ -1,14 +1,3 @@
-/**
- * TODO
- * X Set html/css classes to default state
- * X Test setting process container ready (+ hint)
- * X Set upload container done (+ hint)
- * resolve bug: file icon not changing through js, but changes through normal html/css
- *      try doing the same thing as in process -> change the class of a wrapper
- * resolve bug: when download shows up, so do scroll bars
- * resolve bug: file extension display doesn't update
- */
-
 const dropZone = document.getElementById('drop_zone')
 dropZone.addEventListener('dragover', handleDragOver, false)
 dropZone.addEventListener('drop', handleFileDrop, false)
@@ -53,6 +42,7 @@ function handleFileDrop(event) {
     //resetFileInputsExcept(dropZone)
     setUploadDone()
     setProcessReady()
+    setDownloadInactive()
 }
 
 function handleFileSelect(event) {
@@ -63,6 +53,7 @@ function handleFileSelect(event) {
     //resetFileInputsExcept(fileInputButton)
     setUploadDone()
     setProcessReady()
+    setDownloadInactive()
 }
 
 const updateFileName = (inputFileName) => fileInputButton.innerText = inputFileName
@@ -135,15 +126,14 @@ function setProcessDone() {
 
 const downloadHint = document.getElementById('download_hint')
 const downloadButton = document.getElementById('download_button')
-const fileIcon = document.getElementById('file_icon')
+const fileInfo = document.getElementById('file_info')
 const extensionDisplay = document.getElementById('file_extension')
 
 function setDownloadReady() {
     downloadHint.className = 'ready-hint'
     downloadButton.className = 'ready-button'
-    fileIcon.className = 'file-icon-ready'
-    extensionDisplay.className = 'file-extension-ready'
-    extensionDisplay.innerText = getFileExtension(outputFile.fileName)
+    fileInfo.className = 'file-info-ready'
+    extensionDisplay.innerText = getFileExtension(outputFile.name)
 }
 
 downloadButton.onclick = async () => {
@@ -164,13 +154,11 @@ downloadButton.onclick = async () => {
 function setDownloadDone() {
     downloadHint.className = 'done-hint'
     downloadButton.className = 'done-button'
-    fileIcon.className = 'file-icon-done'
-    extensionDisplay.className = 'file-extension-done'
+    fileInfo.className = 'file-info-done'
 }
 
 function setDownloadInactive() {
     downloadHint.className = 'inactive-hint'
     downloadButton.className = 'inactive-button'
-    fileIcon.className = 'file-icon-inactive'
-    extensionDisplay.className = 'file-extension-inactive'
+    fileInfo.className = 'file-info-inactive'
 }
